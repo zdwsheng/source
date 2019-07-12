@@ -24,7 +24,8 @@ public class AnnotationBean {
 
     @Override
     public String toString() {
-          return JSONObject.toJSONString(this);
+        String className = this.getClass().getSimpleName();
+        return className + ":" + JSONObject.toJSONString(this);
     }
 
     public static void main(String[] args) {
