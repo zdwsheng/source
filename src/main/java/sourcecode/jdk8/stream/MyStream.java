@@ -1,9 +1,8 @@
 package sourcecode.jdk8.stream;
 
-import com.alibaba.fastjson.JSONObject;
 import sourcecode.jdk8.bean.User;
 
-import java.awt.*;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
+
+import static java.lang.System.out;
 
 /**
  * @name
@@ -26,7 +27,8 @@ public class MyStream {
     public static void main(String[] args) {
        /* Map map = instance.listToMap();
         System.out.println(JSONObject.toJSONString(map));*/
-        instance.intStream();
+//        instance.intStream();
+        instance.parallelStream();
     }
 
     private Map listToMap() {
@@ -43,12 +45,21 @@ public class MyStream {
 
     private void intStream() {
         double asDouble = IntStream.range(1, 2).average().getAsDouble();
-        System.out.println("IntStream.range(1, 2).average().getAsDouble():" + asDouble);
+        out.println("IntStream.range(1, 2).average().getAsDouble():" + asDouble);
         double aDouble = IntStream.rangeClosed(3, 5).average().getAsDouble();
-        System.out.println("IntStream.rangeClosed(3, 5).average().getAsDouble():" + aDouble);
+        out.println("IntStream.rangeClosed(3, 5).average().getAsDouble():" + aDouble);
         int asInt = IntStream.of(1, 2, 3, 4, 5).max().getAsInt();
-        System.out.println("IntStream.of(1, 2, 3, 4, 5).max().getAsInt():" + asInt);
+        out.println("IntStream.of(1, 2, 3, 4, 5).max().getAsInt():" + asInt);
         DoublePredicate range = d -> d > 1 && d < 4;
-        DoubleStream.of(1, 2, 3, 4, 5).filter(range).forEach(d -> System.out.println(d));
+        DoubleStream.of(1, 2, 3, 4, 5).filter(range).forEach(d -> out.println(d));
+    }
+
+    /**
+     * 并行流处理  ForkJoinPool
+     */
+    private void parallelStream() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        numbers.parallelStream()
+                .forEachOrdered(out::println);
     }
 }
