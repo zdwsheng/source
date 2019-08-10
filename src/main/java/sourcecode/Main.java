@@ -17,12 +17,6 @@ public class Main {
     static final int MAXIMUM_CAPACITY = 1 << 30;
 
     public static void main(String[] args) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = "Mon Dec 10 18:43:43 CST 2018";
-        SimpleDateFormat sfEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat sfStart = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-        System.out.println(new Date().toString());
-        System.out.println(sfEnd.format(sfStart.parse(date)));
 
     }
 

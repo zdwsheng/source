@@ -305,6 +305,8 @@ public class MyList {
      * <p>
      * linkedList 的全局属性
      * transient int size = 0;   transient Node<E> first;  transient Node<E> last;
+     * <p>
+     * 队列相关的参考queue包下面的MyQueue
      */
     private static void linkedList() {
         LinkedList linkedList = new LinkedList();
@@ -339,15 +341,16 @@ public class MyList {
 
         /**
          *  return add(e);-> linkLast(e); return true;
-         *
+         *  队列先进先出
          */
         linkedList.offer("linkedList3");
         linkedList.offerFirst("linkedList3");
         linkedList.offerLast("linkedList3");
+        linkedList.poll();
 
 
         /**
-         * 队列 先进后出
+         * 栈 先进后出
          */
         //addFirst(e);
         linkedList.push("linkedList3");
