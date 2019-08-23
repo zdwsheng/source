@@ -25,7 +25,7 @@ public class MyStream {
     private List<User> userList = new LinkedList<>();
 
     {
-        userList.add(new User(5, "1", 'Y'));
+        userList.add(new User(5, null, 'Y'));
         userList.add(new User(20, "2", 'Y'));
         userList.add(new User(4, "3", 'Y'));
         userList.add(new User(4, "3", 'Y'));
@@ -40,11 +40,17 @@ public class MyStream {
         instance.collect();
     }
 
+    /**
+     * toMap value不能为null java.util.Map(merge方法) 可以用 自定义Collect实现
+     *
+     * @return
+     */
     private Map listToMap() {
         /*//key不能重复
         Map<Integer, User> userMap = userList.stream().collect(Collectors.toMap(user -> user.getAge(), Function.identity()));*/
-        Map<Integer, User> userMap = userList.stream().collect(Collectors.toMap(User::getAge, Function.identity(), (preUser, user) -> preUser));
-//        userMap = userList.stream().collect(HashMap::new, (m, v) -> m.put(v.getAge(), v), Map::putAll);
+        Map<Integer, User> userMap = userList.stream().collect(Collectors.toMap(User::getAge, Function.identity(), (user1, user2) -> user2));
+        // 自定义Collect实现
+        Map<Integer, String> userNameMap = userList.stream().collect(HashMap::new, (m, v) -> m.put(v.getAge(), v.getName()), Map::putAll);
         return userMap;
     }
 
