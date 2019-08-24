@@ -1,6 +1,7 @@
 package base.collection;
 
-import com.alibaba.fastjson.JSONObject;
+
+import com.alibaba.fastjson.JSON;
 
 import java.util.*;
 
@@ -19,7 +20,9 @@ public class TreeNode<E> {
 //        System.out.println(JSONObject.toJSONString(buildTreeOfList));
 //        ergodicNode(integerNode);
 //        midWhile(integerNode);
-        mid(integerNode);
+//        mid(integerNode);
+        List<Integer> fullPath = getFullPath(integerNode, 222, null);
+        System.out.println(JSON.toJSONString(fullPath));
     }
 
 
@@ -164,4 +167,51 @@ public class TreeNode<E> {
         }
     }
 
+    /**
+     * 根据叶子节点的值得到完整的寻找路径 1.先找左边，再找右边,无论是哪边，递归技术条件都是找到叶子节点为止
+     *
+     * @param root     根节点
+     * @param leftNode 叶子节点
+     * @param list
+     * @return
+     */
+    private static List<Integer> getFullPath(Node<Integer> root, final int leftNode, Stack<Integer> list) {
+        //递归返回条件
+        if (root == null) {
+            return null;
+        }
+        if (list == null) {
+            list = new Stack<Integer>();
+        }
+
+        list.push(root.value);
+
+        System.out.println("value:" + root.value);
+        //找到了
+        if (root.value == leftNode) {
+            return list;
+        }
+        System.out.println("toLeft");
+
+        //往左边找
+        List<Integer> leftList = getFullPath(root.left, leftNode, list);
+
+        //找到了
+        if (leftList != null) {
+            return leftList;
+        }
+
+        System.out.println("toRight");
+        //往右边找
+        List<Integer> rightList = getFullPath(root.right, leftNode, list);
+
+        //找到了
+        if (rightList != null) {
+            return rightList;
+        }
+        System.out.println("pop");
+
+        list.pop();
+        return null;
+    }
 }
