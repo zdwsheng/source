@@ -135,7 +135,7 @@ public class MyHashMap {
          *                         else:遍历数组:目的是找到为空的节点，然后判断是否要转成红黑树，或者找到key相等的node节点
          *                             for (int binCount = 0; ; ++binCount) {
          *                                 2.2.1.1:if:e=p.next为null,则p.next = newNode(hash, key, value, null);
-         *                                         if:Node链表长度大于等于7，转换成红黑树treeifyBin(tab, hash);break;
+         *                                         if:Node链表长度大于7，转换成红黑树treeifyBin(tab, hash);break;
          *                                 2.2.1.2:if:找到相等的Node节点了，break;
          *                                 p = e;
          *                                 }
