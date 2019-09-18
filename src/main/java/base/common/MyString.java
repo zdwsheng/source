@@ -12,6 +12,6 @@ package base.common;
 public class MyString {
 
     public static void main(String[] args) {
-        System.out.println("");
+        System.out.println();
     }
 }

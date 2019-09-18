@@ -23,8 +23,6 @@ public class WaitAndNotify {
         Thread two = new Thread(new Wait(lock));
         one.start();
         two.start();
-        one.join();
-        two.join();
     }
 
     private static class Wait implements Runnable {

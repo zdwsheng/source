@@ -16,6 +16,6 @@ public class MyCallable implements Callable {
     public Object call() throws Exception {
         String returnStr = "this is my imp callable";
         System.out.println(returnStr);
-        return new String(returnStr + " return");
+        return returnStr + " return";
     }
 }

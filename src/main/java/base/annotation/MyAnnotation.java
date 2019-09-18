@@ -6,9 +6,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface MyAnnotation {
-    public int id() default 99;
+    int id() default 99;
 
-    public String name() default "zdw";
+    String name() default "zdw";
 
-    public char sex() default 'M';
+    char sex() default 'M';
 }
