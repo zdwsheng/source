@@ -1,9 +1,6 @@
 package base.concurrent.synchronize.wait;
 
-import com.oracle.jrockit.jfr.Producer;
-
 import java.util.Deque;
-import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.TimeUnit;
 
