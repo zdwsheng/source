@@ -48,7 +48,7 @@ public class ProducerAndConsumer {
         private void producer() {
             synchronized (deque) {
                 try {
-                    //生产达到最大数量了
+                    //生产达到最大数量了  要用while做判断，因为有多个生产者或者消费者的话，可能会导致判断条件不足，所以不能用if，被唤醒需要再次判断
                     while (deque.size() == MAX_SIZE) {
                         System.out.println("生产达到最大数量了..................,数量:" + deque.size());
                         TimeUnit.SECONDS.sleep(1);
